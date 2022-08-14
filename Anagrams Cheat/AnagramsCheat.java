@@ -2,14 +2,14 @@ package cheat;
 import java.util.*;
 import java.io.*;
 public class AnagramsCheat {
-	
+
 	private static TrieNode root = new TrieNode();
-	private static int anagramLength; 
+	private static int anagramLength;
 	private static String board[];
 	private static ArrayList<Answer> ans = new ArrayList<>();
-	
+
 	public static void main(String args[]) throws IOException{
-		Scanner in = new Scanner(new File("C:\\Users\\har\\Desktop\\USACO submissions\\WordHunt Cheat\\dictionary.txt"));
+		Scanner in = new Scanner(new File("dictionary.txt"));
 		Scanner in2 = new Scanner(System.in);
 		makeTrie(in);
 		System.out.print("Input the 6 letter anagrams puzzle:");
@@ -41,18 +41,18 @@ public class AnagramsCheat {
 				if(curr.getChildren().get(letter) == null) {
 					curr.getChildren().put(letter, new TrieNode());
 				}
-				
+
 				//Also resets curr and curr changes until the word is finished(next letter)
 				//Assigning whole different new TrieNode
 				curr = curr.getChildren().get(letter);
 				//This specific letter or TrieNode is the end of the word
-				if(i == word.length()-1) 
+				if(i == word.length()-1)
 					curr.setIFW(true);
 			}
 		}
 	}
 	static void recurse(int pos, String path, String word, TrieNode node, boolean[] visited) {
-		if(pos < 0 || pos > anagramLength && visited[pos]) 
+		if(pos < 0 || pos > anagramLength && visited[pos])
 			return;
 		String letter = board[pos];
 		//checks if there is a valid word in the dictionary if you add the letter
@@ -86,16 +86,16 @@ public class AnagramsCheat {
 			quickSort(low, i-1);
 			quickSort(i+1, high);
 		}
-		
+
 	}
-	
-	
+
+
 }
 class TrieNode {
 	private boolean isFullWord = false;
 	private HashMap<String, TrieNode> children = new HashMap<>();
 	public TrieNode(){}
-	
+
 	public boolean getIFW() {
 		return isFullWord;
 	}
@@ -105,7 +105,7 @@ class TrieNode {
 	public HashMap<String, TrieNode> getChildren(){
 		return children;
 	}
-	
+
 }
 class Answer{
 	private String path = "";
